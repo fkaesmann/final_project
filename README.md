@@ -4,7 +4,6 @@ Fred Kaesmann
 Dec. 11, 2019
 General Assembly 
 
-
 ## User story
 As a student planing to take tests for software security certifications, I need to price taking tests and recording my score.
 
@@ -38,5 +37,23 @@ This applications will require the user sign in with an ID or with a guest accou
 ## Wireframe
 
 ## ERD
+The Security Exam Test Taker will be comprised of two document models, they are:
+1. User document model
+```
+    - user ID - string
+    - user password - string
+    - user score - integer
+```
+
+2. Question document model
+```
+    - Question - string
+    - Posible answer 1 - string
+    - Posible answer 2 - string
+    - Posible answer 3 - string
+    - Posible answer 4 - string
+    - Correct answer - integer
+    - Additional details - string
+```
 
 ## Finial thoughts
