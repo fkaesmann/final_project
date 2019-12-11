@@ -1,11 +1,11 @@
 # GA Final Project
-Security Exam Test Taker
-Fred Kaesmann
-Dec. 11, 2019
-General Assembly 
+#### Security Exam Test Taker
+#### Fred Kaesmann
+#### Dec. 11, 2019
+#### General Assembly Bootcamp
 
 ## User story
-As a student planing to take tests for software security certifications, I need to practice taking tests and keep track of my score.
+As a student planing to take a test for a software security certification, I need to practice taking tests and keep track of my score.
 
 ### Details
 This application will require the user sign in with an ID or with a guest account.  It will prompt the user with a security question and four possible answers.  The user will select an answer and the application will indicate correct or incorrect and track the user's score from session to session. The user will select Next to go to the next question.
@@ -36,7 +36,7 @@ This application will require the user sign in with an ID or with a guest accoun
 4. Mongo / Mongoose
 
 ## Wireframe
-
+![](https://media.git.generalassemb.ly/user/23449/files/5aa83080-1bf9-11ea-867e-8038abb06413)
 
 ## ERD
 The Security Exam Test Taker post-MVP will be comprised of two document models, they are:
