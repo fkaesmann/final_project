@@ -17,7 +17,7 @@ This applications will require the user sign in with an ID or with a guest accou
 
 ## Technologies
 ### Frontend
-'''
+```
 1. React
 2. HTML
 3. JavaScript
@@ -25,15 +25,15 @@ This applications will require the user sign in with an ID or with a guest accou
 5. Flexbox
 6. CSS formatting libraries such as bootstrap
 
-'''
+```
 
 ### Backend
-'''
+```
 1. NodeJS
 2. Express
 3. JavaScript
 4. Mongo / Mongoose
-'''
+```
 
 ## Wireframe
 
