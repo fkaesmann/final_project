@@ -1,0 +1,19 @@
+
+
+
+curl -X POST -H "Content-Type: application/json" -d '{"question": "What is your CISSP goals?",
+    "answer1": "CISSP Answer 1",
+    "answer2": "CISSP Answer 2",
+    "answer3": "CISSP Answer 3",
+    "answer4": "CISSP Answer 4",
+    "correctAnswer": 2,
+    "details": "The answer is CISSP, because it is good"}' http://localhost:3003/testtaker
+
+
+
+curl -X PUT -H "Content-Type: application/json" -d ‘{“question” : ”How will you get rich?"}' http://localhost:3003/testtaker/123
+
+curl http://localhost:3003/testtaker/5df1932adfd154544144ee65 \
+
+
+
