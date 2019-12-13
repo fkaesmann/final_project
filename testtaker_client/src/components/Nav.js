@@ -1,10 +1,10 @@
 import React from "react";
 
 function Nav(props) {
-  const { questions } = props;
+  const { score } = props;
   return (
     <div>
-      Fred in Nav
+      <h3>Score: {score} </h3>
       {/* {questions.map(dater => (
         // <p key={dater.id}>fred</p>
         <div key={dater.id}>

@@ -1,13 +1,21 @@
 
 
 
-curl -X POST -H "Content-Type: application/json" -d '{"question": "What is your CISSP goals?",
-    "answer1": "CISSP Answer 1",
-    "answer2": "CISSP Answer 2",
-    "answer3": "CISSP Answer 3",
-    "answer4": "CISSP Answer 4",
+curl -X POST -H "Content-Type: application/json" -d '{"question": "Which of the following is NOT a way to secure a wireless network?",
+    "answer1": "Disable broadcast of SSID within APs configuration",
+    "answer2": "Give APs descriptive names",
+    "answer3": "Put the access points (AP) in a location protected by a firewall",
+    "answer4": "Change APs default values",
     "correctAnswer": 2,
-    "details": "The answer is CISSP, because it is good"}' http://localhost:3003/testtaker
+    "details": "The SSID of the AP has very little value when it comes to security. In fact, using descriptive names such as you company name would make you a more likely target in some cases."}' http://localhost:3003/testtaker
+
+curl -X POST -H "Content-Type: application/json" -d '{"question": "Which access control model is best suited in an environment where a high security level is required and where it is desired that only the administrator grants access control?",
+    "answer1": "DAC",
+    "answer2": "MAC",
+    "answer3": "Access control matrix ",
+    "answer4": "TACACS" ,
+    "correctAnswer": 2,
+    "details": "The correct answer is B.  MAC provides high security by regulating access based on the clearance of individual users and sensitivity labels for each object."}' http://localhost:3003/testtaker
 
 
 
@@ -15,5 +23,5 @@ curl -X PUT -H "Content-Type: application/json" -d ‘{“question” : ”How w
 
 curl http://localhost:3003/testtaker/5df1932adfd154544144ee65 \
 
-
+curl -X DELETE  localhost:3003/testtaker/5df2bf60dcbb9011bc62df2c
 

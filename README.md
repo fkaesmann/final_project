@@ -51,6 +51,7 @@ This application will require the user sign in with an ID or with a guest accoun
 - npm install mongoose
 - npm install method-override
 - npm install axios
+- npm install react-bootstrap bootstrap
 
 ## Wireframe
 
