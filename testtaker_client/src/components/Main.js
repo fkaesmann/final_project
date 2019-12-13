@@ -16,7 +16,8 @@ class Main extends Component {
       questionCurrent: {},
       answerText: "",
       answerColor: "",
-      clickedAnswer: false
+      clickedAnswer: false,
+      nextButtonState: false
     };
     this.getQuestions = this.getQuestions.bind(this);
   }
@@ -42,16 +43,19 @@ class Main extends Component {
   }
 
   async handleNext() {
+    //Check if it is the last question
     if (this.state.questionNumber === this.state.questions.length - 1) {
       this.state.questionNumber = 0;
       this.setState({
-        // questionCurrent: this.state.questions[this.state.questionNumber],
-        answerText: "Complete!",
-        answerColor: ""
+        answerText: "Test Complete!",
+        answerColor: "info",
+        nextButtonState: true
       });
+      return;
     } else {
       this.state.questionNumber++;
     }
+
     this.state.questionCurrent = this.state.questions[
       this.state.questionNumber
     ];
@@ -59,30 +63,39 @@ class Main extends Component {
       clickedAnswer: false,
       questionCurrent: this.state.questions[this.state.questionNumber],
       answerText: "",
-      answerColor: ""
+      answerColor: "",
+      nextButtonState: ""
     });
   }
 
   alertClicked(num) {
-    // if (this.state.clickedAnswer) {
-    //   return;
-    // }
+    //Check to see if any answer has been clicked before
+    if (!this.state.clickedAnswer) {
+      if (num === this.state.questionCurrent.correctAnswer) {
+        this.setState({
+          score: this.state.score + 1
+        });
+      } else {
+        if (this.state.score <= 0) {
+          this.state.score = 1;
+        }
+        this.setState({
+          score: this.state.score - 1
+        });
+      }
+    }
+
     if (num === this.state.questionCurrent.correctAnswer) {
       this.setState({
         clickedAnswer: true,
         answerColor: "success",
-        answerText: this.state.questionCurrent.details,
-        score: this.state.score + 1
+        answerText: this.state.questionCurrent.details
       });
     } else {
-      if (this.state.score <= 0) {
-        this.state.score = 1;
-      }
       this.setState({
         clickedAnswer: true,
         answerColor: "danger",
-        answerText: "Incorrect",
-        score: this.state.score - 1
+        answerText: "Incorrect"
       });
     }
   }
@@ -136,6 +149,7 @@ class Main extends Component {
                   type="button"
                   className="btn btn-primary"
                   size="sm"
+                  disabled={this.state.nextButtonState}
                   onClick={() =>
                     this.handleNext(this.state.questionCurrent.question._id)
                   }
@@ -156,6 +170,7 @@ class Main extends Component {
         <Nav
           score={this.state.score}
           numOfQuestions={this.state.questions.length}
+          questionNumber={this.state.questionNumber}
         />
       </>
     );
