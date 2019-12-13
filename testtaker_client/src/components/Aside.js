@@ -22,6 +22,16 @@ class Aside extends Component {
     }
   }
 
+  async handleAdd(num) {
+    try {
+      //   // event.preventDefault();
+      console.log("handleAdd num =>", num);
+      this.props.handleAdd();
+    } catch (err) {
+      console.log("handleAdd: ", err);
+    }
+  }
+
   // const { x } = props;
   render() {
     return (
@@ -34,9 +44,14 @@ class Aside extends Component {
             block
             onClick={() => this.handleReset1(0)}
           >
-            Reset test
+            Reset Test
           </Button>
-          <Button variant="secondary" size="md" block>
+          <Button
+            variant="secondary"
+            size="md"
+            block
+            onClick={() => this.handleAdd(0)}
+          >
             Add Test Question
           </Button>
           <Button variant="secondary" size="md" block>

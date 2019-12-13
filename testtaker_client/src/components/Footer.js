@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Add from "./Nav.js";
 
 class Footer extends React.Component {
   constructor(props) {

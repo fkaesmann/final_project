@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Aside from "./Aside.js";
 import Nav from "./Nav.js";
+import Add from "./Nav.js";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -103,7 +104,19 @@ class Main extends Component {
 
   async handlReset() {
     console.log("Main handleReset");
+    await this.getQuestions();
+    this.setState({
+      questionNumber: 0,
+      questionCurrent: this.state.questions[0]
+    });
   }
+  // async handleAdd() {
+  //   console.log("Main handleAdd");
+  //   // await this.getQuestions();
+  //   this.setState({
+  //     addForm: true
+  //   });
+  // }
 
   render() {
     // const showEditForm = this.state.editButton ? (
@@ -114,7 +127,7 @@ class Main extends Component {
     return (
       <>
         <div>
-          <Aside handlReset={this.handlReset} />
+          <Aside handlReset={this.handlReset} handleAdd={this.handleAdd} />
         </div>
         <div>
           <div>
@@ -176,6 +189,7 @@ class Main extends Component {
                 )} */}
           </div>
         </div>
+        {/* <Add /> */}
 
         <Nav
           score={this.state.score}
