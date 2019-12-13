@@ -5,7 +5,7 @@ const Tests = require("../models/testsModel");
 
 //Get all
 tests.get("/", (req, res) => {
-  console.log("in controller testtaker.js");
+  // console.log("in controller testtaker.js");
   Tests.find({}, (err, foundTests) => {
     if (err) {
       res.status(400).json({ error: err.message });

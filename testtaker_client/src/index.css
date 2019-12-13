@@ -29,3 +29,7 @@ header {
   grid-area: header;
   background-color: var(--oasis-blue);
 }
+footer {
+  grid-area: footer;
+  background-color: var(--oasis-blue);
+}

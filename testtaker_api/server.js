@@ -64,16 +64,16 @@ app.get("/", (req, res) => {
 });
 
 // SEED ROUTE
-const testSeed = require("./models/testsSeed.js");
-app.get("/testsSeed", (req, res) => {
-  // seeds the data
-  Tests.create(testSeed, (err, createdTestsItems) => {
-    console.log("In testsSeed");
-    console.log("createdTestsItems =>", createdTestsItems);
+// const seedTests = require("./models/seedTests.js");
+// app.get("/testsSeed", (req, res) => {
+//   // seeds the data
+//   Tests.create(testSeed, (err, createdTestsItems) => {
+//     console.log("In seedTests");
+//     console.log("createdTestsItems =>", createdTestsItems);
 
-    res.redirect("/");
-  });
-});
+//     res.redirect("/");
+//   });
+// });
 
 // CONNECTIONS
 app.listen(PORT, () => {

@@ -20,14 +20,15 @@ class Main extends Component {
       nextButtonState: false
     };
     this.getQuestions = this.getQuestions.bind(this);
+    this.handlReset = this.handlReset.bind(this);
   }
 
   async componentDidMount() {
     await this.getQuestions();
-    console.log(
-      "Questions componentDidMount count",
-      this.state.questions.length
-    );
+    // console.log(
+    //   "Questions componentDidMount count",
+    //   this.state.questions.length
+    // );
     this.setState({
       questionCurrent: this.state.questions[0]
     });
@@ -100,11 +101,20 @@ class Main extends Component {
     }
   }
 
+  async handlReset() {
+    console.log("Main handleReset");
+  }
+
   render() {
+    // const showEditForm = this.state.editButton ? (
+    //   <UpdateBooz booz={this.state.selectedBrewery} getModel={this.getModel} />
+    // ) : (
+    //   <ShowBooz booz={this.state.boozToShow} booz2={this.state.boozComments} />
+    // );
     return (
       <>
         <div>
-          <Aside />
+          <Aside handlReset={this.handlReset} />
         </div>
         <div>
           <div>

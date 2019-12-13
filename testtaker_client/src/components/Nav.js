@@ -11,10 +11,7 @@ function Nav(props) {
       {/* {questions.map(dater => (
         // <p key={dater.id}>fred</p>
         <div key={dater.id}>
-          <h3>Name: {questions.name} </h3>
-          <img src={dater.img} alt={dater.name} />
-          <h4>Starsign: {dater.starsign} </h4>
-          <h4>Age: {dater.age} </h4>
+
           {dater.ltl ? (
             <h5> Loves to laugh and have a good time</h5>
           ) : (

@@ -79,36 +79,11 @@ class Footer extends React.Component {
   }
   render() {
     return (
-      <center>
-        <form onSubmit={this.handleAdd}>
-          <input
-            onChange={this.handleChange}
-            name="name"
-            placeholder={"Name"}
-            type="text"
-            value={this.state.name}
-            id="name"
-          />
-          <input
-            onChange={this.handleChange}
-            name="age"
-            placeholder={"Age"}
-            type="number"
-            value={this.state.age}
-            id={"age"}
-          />
-          <input
-            onChange={this.handleChange}
-            name="starsign"
-            placeholder={"starsign"}
-            type="text"
-            value={this.state.starsign}
-            id={"starsign"}
-          />
-
-          <input type="submit" value="add dater" />
-        </form>
-      </center>
+      <footer>
+        <center>
+          <h2>Footer</h2>
+        </center>
+      </footer>
     );
   }
 }
