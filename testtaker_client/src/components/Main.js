@@ -4,6 +4,7 @@ import Nav from "./Nav.js";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
+// import { Text } from "react-native";
 
 class Main extends Component {
   constructor(props) {
@@ -14,14 +15,18 @@ class Main extends Component {
       score: 0,
       questionCurrent: {},
       answerText: "",
-      answerColor: ""
+      answerColor: "",
+      clickedAnswer: false
     };
     this.getQuestions = this.getQuestions.bind(this);
   }
 
   async componentDidMount() {
     await this.getQuestions();
-    // console.log("Questions componentDidMount", this.state.questions[0]);
+    console.log(
+      "Questions componentDidMount count",
+      this.state.questions.length
+    );
     this.setState({
       questionCurrent: this.state.questions[0]
     });
@@ -37,11 +42,21 @@ class Main extends Component {
   }
 
   async handleNext() {
-    this.state.questionNumber++;
+    if (this.state.questionNumber === this.state.questions.length - 1) {
+      this.state.questionNumber = 0;
+      this.setState({
+        // questionCurrent: this.state.questions[this.state.questionNumber],
+        answerText: "Complete!",
+        answerColor: ""
+      });
+    } else {
+      this.state.questionNumber++;
+    }
     this.state.questionCurrent = this.state.questions[
       this.state.questionNumber
     ];
     this.setState({
+      clickedAnswer: false,
       questionCurrent: this.state.questions[this.state.questionNumber],
       answerText: "",
       answerColor: ""
@@ -49,8 +64,12 @@ class Main extends Component {
   }
 
   alertClicked(num) {
+    // if (this.state.clickedAnswer) {
+    //   return;
+    // }
     if (num === this.state.questionCurrent.correctAnswer) {
       this.setState({
+        clickedAnswer: true,
         answerColor: "success",
         answerText: this.state.questionCurrent.details,
         score: this.state.score + 1
@@ -60,6 +79,7 @@ class Main extends Component {
         this.state.score = 1;
       }
       this.setState({
+        clickedAnswer: true,
         answerColor: "danger",
         answerText: "Incorrect",
         score: this.state.score - 1
@@ -75,13 +95,13 @@ class Main extends Component {
         </div>
         <div>
           <div>
-            <h4 align="left">
-              Instructions: Select the best answer for the question
-            </h4>
+            <h5 align="left">
+              Instructions: Click on the best answer for the question
+            </h5>
 
             <ListGroup align="left">
               <ListGroup.Item variant="primary">
-                <bold>Question: </bold>
+                <strong>Question: </strong>
                 {this.state.questionCurrent.question}
               </ListGroup.Item>
               <ListGroup.Item
@@ -133,7 +153,10 @@ class Main extends Component {
           </div>
         </div>
 
-        <Nav score={this.state.score} />
+        <Nav
+          score={this.state.score}
+          numOfQuestions={this.state.questions.length}
+        />
       </>
     );
   }
