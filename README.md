@@ -81,6 +81,12 @@ The Security Exam Test Taker post-MVP will be comprised of two document models, 
     - Additional details : string
 ```
 
+## Heroku
+
+- heroku create ftk-testtaker-api2
+  -- Creating ⬢ ftk-testtaker-api2... done
+  -- https://ftk-testtaker-api2.herokuapp.com/ | https://git.heroku.com/ftk-testtaker-api2.git
+
 ## Finial Thoughts
 
 Prudential uses Full Stack models, mostly with NodeJS / Express, and either Mongo or PostgreSQL. I don't know if any applications - currently - are using Ruby or Rails, so I'm sticking with the MERN stack for now.
