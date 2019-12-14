@@ -1,6 +1,6 @@
 import React from "react";
-import axios from "axios";
-import Add from "./Nav.js";
+// import axios from "axios";
+// import Add from "./Nav.js";
 
 class Footer extends React.Component {
   constructor(props) {
@@ -19,8 +19,6 @@ class Footer extends React.Component {
     // t.boolean "ltl"
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleAdd = this.handleAdd.bind(this);
-    // this.handleUpdate = this.handleUpdate.bind(this);
   }
   handleChange(event) {
     // console.log("change event");
@@ -38,16 +36,14 @@ class Footer extends React.Component {
   }
 
   async handleAdd(event) {
-    event.preventDefault();
-    const obj = {
-      name: this.state.name,
-      age: this.state.age,
-      starsign: this.state.starsign
-    };
-    console.log(obj);
-
-    await axios.post("/users", obj);
-
+    // event.preventDefault();
+    // const obj = {
+    //   name: this.state.name,
+    //   age: this.state.age,
+    //   starsign: this.state.starsign
+    // };
+    // console.log(obj);
+    // await axios.post("/users", obj);
     // this.getNotices();
   }
   handleSubmit(event) {
@@ -68,15 +64,6 @@ class Footer extends React.Component {
     //   }
     //   );
     // }
-
-    // clear out form
-    // this.setState({
-    //   formInputs: {
-    //     author: "",
-    //     title: "",
-    //     phone: ""
-    //   }
-    // });
   }
   render() {
     return (

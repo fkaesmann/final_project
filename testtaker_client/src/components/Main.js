@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import Aside from "./Aside.js";
 import Nav from "./Nav.js";
-import Add from "./Nav.js";
+import Questions from "./Questions";
+import Add from "./Add";
 import axios from "axios";
-import Button from "react-bootstrap/Button";
-import ListGroup from "react-bootstrap/ListGroup";
+// import Button from "react-bootstrap/Button";
+// import ListGroup from "react-bootstrap/ListGroup";
 // import { Text } from "react-native";
 
 class Main extends Component {
@@ -16,12 +17,15 @@ class Main extends Component {
       score: 0,
       questionCurrent: {},
       answerText: "",
+      addButton: false,
       answerColor: "",
       clickedAnswer: false,
       nextButtonState: false
     };
     this.getQuestions = this.getQuestions.bind(this);
     this.handlReset = this.handlReset.bind(this);
+    this.handleNext = this.handleNext.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
   }
 
   async componentDidMount() {
@@ -31,7 +35,9 @@ class Main extends Component {
     //   this.state.questions.length
     // );
     this.setState({
-      questionCurrent: this.state.questions[0]
+      questionCurrent: this.state.questions[0],
+      questionNumber: 0,
+      addButton: false
     });
   }
 
@@ -39,13 +45,15 @@ class Main extends Component {
     const response = await axios("/testtaker");
     const data = response.data;
     this.setState({
-      questions: data
+      questions: data,
+      questionNumber: 0
     });
-    // console.log("Questions getQuestions", this.state.questions[0]);
+    // console.log("Questions getQuestions", this.state.questions);
   }
 
   async handleNext() {
     //Check if it is the last question
+    // console.log("main.js handleNext", this.state.questionNumber);
     if (this.state.questionNumber === this.state.questions.length - 1) {
       this.state.questionNumber = 0;
       this.setState({
@@ -70,126 +78,84 @@ class Main extends Component {
     });
   }
 
-  alertClicked(num) {
-    //Check to see if any answer has been clicked before
-    if (!this.state.clickedAnswer) {
-      if (num === this.state.questionCurrent.correctAnswer) {
-        this.setState({
-          score: this.state.score + 1
-        });
-      } else {
-        if (this.state.score <= 0) {
-          this.state.score = 1;
-        }
-        this.setState({
-          score: this.state.score - 1
-        });
-      }
-    }
-
-    if (num === this.state.questionCurrent.correctAnswer) {
-      this.setState({
-        clickedAnswer: true,
-        answerColor: "success",
-        answerText: this.state.questionCurrent.details
-      });
-    } else {
-      this.setState({
-        clickedAnswer: true,
-        answerColor: "danger",
-        answerText: "Incorrect"
-      });
-    }
+  async handleSubmit(event, obj) {
+    console.log("main.js handleSubmit ", obj);
+    await axios.post("/testtaker", obj);
   }
 
+  // alertClicked(num) {
+  //Check to see if any answer has been clicked before
+  // if (!this.state.clickedAnswer) {
+  //   if (num === this.state.questionCurrent.correctAnswer) {
+  //     this.setState({
+  //       score: this.state.score + 1
+  //     });
+  //   } else {
+  //     if (this.state.score <= 0) {
+  //       this.state.score = 1;
+  //     }
+  //     this.setState({
+  //       score: this.state.score - 1
+  //     });
+  //   }
+  // }
+  // if (num === this.state.questionCurrent.correctAnswer) {
+  //   this.setState({
+  //     clickedAnswer: true,
+  //     answerColor: "success",
+  //     answerText: this.state.questionCurrent.details
+  //   });
+  // } else {
+  //   this.setState({
+  //     clickedAnswer: true,
+  //     answerColor: "danger",
+  //     answerText: "Incorrect"
+  //   });
+  // }
+  // }
+
   async handlReset() {
-    console.log("Main handleReset");
     await this.getQuestions();
+    console.log("Main handleReset", this.state.questions[0]);
     this.setState({
       questionNumber: 0,
       questionCurrent: this.state.questions[0]
     });
   }
-  // async handleAdd() {
-  //   console.log("Main handleAdd");
-  //   // await this.getQuestions();
-  //   this.setState({
-  //     addForm: true
-  //   });
-  // }
+  async handleAdd() {
+    console.log("Main handleAdd");
+
+    this.setState({
+      addButton: true
+    });
+  }
 
   render() {
-    // const showEditForm = this.state.editButton ? (
-    //   <UpdateBooz booz={this.state.selectedBrewery} getModel={this.getModel} />
-    // ) : (
-    //   <ShowBooz booz={this.state.boozToShow} booz2={this.state.boozComments} />
-    // );
+    const showAddForm = this.state.addButton ? (
+      <Add handleSubmit={this.handleSubmit} />
+    ) : (
+      <Questions
+        questionCurrent={this.state.questionCurrent}
+        score={this.state.score}
+        alertClicked={this.alertClicked}
+        handleNext={this.handleNext}
+      />
+    );
     return (
       <>
         <div>
           <Aside handlReset={this.handlReset} handleAdd={this.handleAdd} />
         </div>
-        <div>
-          <div>
-            <h5 align="left">
-              Instructions: Click on the best answer for the question
-            </h5>
 
-            <ListGroup align="left">
-              <ListGroup.Item variant="primary">
-                <strong>Question: </strong>
-                {this.state.questionCurrent.question}
-              </ListGroup.Item>
-              <ListGroup.Item
-                variant="Secondary"
-                onClick={() => this.alertClicked(1)}
-              >
-                {this.state.questionCurrent.answer1}
-              </ListGroup.Item>
-              <ListGroup.Item
-                variant="Dark"
-                onClick={() => this.alertClicked(2)}
-              >
-                {this.state.questionCurrent.answer2}
-              </ListGroup.Item>
-              <ListGroup.Item
-                variant="Secondary"
-                onClick={() => this.alertClicked(3)}
-              >
-                {this.state.questionCurrent.answer3}
-              </ListGroup.Item>
-              <ListGroup.Item
-                variant="Dark"
-                onClick={() => this.alertClicked(4)}
-              >
-                {this.state.questionCurrent.answer4}
-              </ListGroup.Item>
-              <ListGroup.Item variant={this.state.answerColor}>
-                {this.state.answerText}
-              </ListGroup.Item>
-              <ListGroup.Item align="right" variant="">
-                <Button
-                  type="button"
-                  className="btn btn-primary"
-                  size="sm"
-                  disabled={this.state.nextButtonState}
-                  onClick={() =>
-                    this.handleNext(this.state.questionCurrent.question._id)
-                  }
-                >
-                  Next
-                </Button>
-              </ListGroup.Item>
-            </ListGroup>
+        {/* <Questions
+          questionCurrent={this.state.questionCurrent}
+          score={this.state.score}
+          alertClicked={this.alertClicked}
+          handleNext={this.handleNext}
+        /> */}
 
-            {/* {dater.ltl ? (
-                  <h5> Loves to laugh and have a good time</h5>
-                ) : (
-                  <h5> Hates laughing, does not like having a good time</h5>
-                )} */}
-          </div>
-        </div>
-        {/* <Add /> */}
+        {/* <Add handleSubmit={this.handleSubmit} /> */}
+        {showAddForm}
 
         <Nav
           score={this.state.score}

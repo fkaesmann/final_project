@@ -33,3 +33,7 @@ footer {
   grid-area: footer;
   background-color: var(--oasis-blue);
 }
+add {
+  grid-area: add;
+  background-color: var(--oasis-blue);
+}

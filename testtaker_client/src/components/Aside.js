@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
 // import Form from './Form.js'
 
-// function Aside(props) {
 class Aside extends Component {
   constructor(props) {
     super(props);
@@ -14,8 +13,7 @@ class Aside extends Component {
 
   async handleReset1(num) {
     try {
-      //   // event.preventDefault();
-      console.log("handleReset num =>", num);
+      // console.log("handleReset num =>", num);
       this.props.handlReset();
     } catch (err) {
       console.log("Update Submit Error: ", err);
@@ -25,7 +23,7 @@ class Aside extends Component {
   async handleAdd(num) {
     try {
       //   // event.preventDefault();
-      console.log("handleAdd num =>", num);
+      // console.log("handleAdd num =>", num);
       this.props.handleAdd();
     } catch (err) {
       console.log("handleAdd: ", err);
