@@ -49,12 +49,12 @@ class Footer extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     // if (this.props.notice) {
-    this.props.handleSubmit(event, {
-      title: this.title,
-      author: this.author,
-      phone: this.phone,
-      id: this.props.notice.id
-    });
+    // this.props.handleSubmit(event, {
+    //   title: this.title,
+    //   author: this.author,
+    //   phone: this.phone,
+    //   id: this.props.notice.id
+    // });
     // this.props.toggleForm();
     // } else {
     //   this.props.handleSubmit(event, {

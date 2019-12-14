@@ -34,15 +34,6 @@ class Questions extends Component {
     // });
   }
 
-  // async getQuestions() {
-  // const response = await axios("/testtaker");
-  // const data = response.data;
-  // this.setState({
-  //   questions: data
-  // });
-  // console.log("Questions getQuestions", this.state.questions[0]);
-  // }
-
   async handleNext(question_ID) {
     //Check if it is the last question
     this.props.handleNext(question_ID);
@@ -105,12 +96,6 @@ class Questions extends Component {
   }
 
   render() {
-    // const showEditForm = this.state.editButton ? (
-    //   <UpdateBooz booz={this.state.selectedBrewery} getModel={this.getModel} />
-    // ) : (
-    //   <ShowBooz booz={this.state.boozToShow} booz2={this.state.boozComments} />
-    // );
-    // const { score, numOfQuestions, details } = props;
     return (
       <>
         <div>

@@ -22,13 +22,13 @@ class Add extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    console.log("question => ", event.target.formQuestion.value);
-    console.log("Answer 1 => ", event.target.formAnswer1.value);
-    console.log("Answer 2 => ", event.target.formAnswer2.value);
-    console.log("Answer 3 => ", event.target.formAnswer3.value);
-    console.log("Answer 4 => ", event.target.formAnswer4.value);
-    console.log("Correct => ", event.target.formCorrectNumber.value);
-    console.log("Details => ", event.target.formDetails.value);
+    // console.log("question => ", event.target.formQuestion.value);
+    // console.log("Answer 1 => ", event.target.formAnswer1.value);
+    // console.log("Answer 2 => ", event.target.formAnswer2.value);
+    // console.log("Answer 3 => ", event.target.formAnswer3.value);
+    // console.log("Answer 4 => ", event.target.formAnswer4.value);
+    // console.log("Correct => ", event.target.formCorrectNumber.value);
+    // console.log("Details => ", event.target.formDetails.value);
     // if (this.props.notice) {
     this.props.handleSubmit(event, {
       question: event.target.formQuestion.value,
@@ -37,7 +37,8 @@ class Add extends Component {
       answer3: event.target.formAnswer3.value,
       answer4: event.target.formAnswer4.value,
       correctAnswer: event.target.formCorrectNumber.value,
-      details: event.target.formDetails.value
+      details: event.target.formDetails.value,
+      id: event.target.formId.value
     });
     //   this.props.toggleForm();
     // } else {
@@ -62,39 +63,74 @@ class Add extends Component {
   render() {
     return (
       <div>
-        <h1>Add js</h1>
+        <h1> </h1>
+        <h3 align="left">Enter the question details</h3>
 
         <Form align="left" onSubmit={this.handleSubmit}>
           <Form.Group controlId="formQuestion">
-            <Form.Label>Enter the question details</Form.Label>
-            <Form.Control type="text" placeholder="Question" />
+            <Form.Control
+              type="text"
+              placeholder="Question"
+              defaultValue={this.props.questionUpdate.question}
+            />
           </Form.Group>
 
           <Form.Group controlId="formAnswer1">
-            {/* <Form.Label>Enter Question</Form.Label> */}
-            <Form.Control type="text" placeholder="Answer 1" />
+            <Form.Control
+              type="text"
+              placeholder="Answer 1"
+              defaultValue={this.props.questionUpdate.answer1}
+            />
           </Form.Group>
+
           <Form.Group controlId="formAnswer2">
-            {/* <Form.Label>Enter Question 2</Form.Label> */}
-            <Form.Control type="text" placeholder="Answer 2" />
+            <Form.Control
+              type="text"
+              placeholder="Answer 2"
+              defaultValue={this.props.questionUpdate.answer2}
+            />
           </Form.Group>
+
           <Form.Group controlId="formAnswer3">
-            {/* <Form.Label>Enter Question 3</Form.Label> */}
-            <Form.Control type="text" placeholder="Answer 3" />
+            <Form.Control
+              type="text"
+              placeholder="Answer 3"
+              defaultValue={this.props.questionUpdate.answer3}
+            />
           </Form.Group>
+
           <Form.Group controlId="formAnswer4">
-            <Form.Control type="text" placeholder="Answer 4" />
+            <Form.Control
+              type="text"
+              placeholder="Answer 4"
+              defaultValue={this.props.questionUpdate.answer4}
+            />
           </Form.Group>
+
           <Form.Group controlId="formCorrectNumber">
-            {/* <Form.Label>Correct Number (1 - 4)</Form.Label> */}
-            <Form.Control type="number" placeholder="Correct (1 - 4)" />
+            <Form.Control
+              type="number"
+              placeholder="Correct (1 - 4)"
+              defaultValue={this.props.questionUpdate.correctAnswer}
+            />
           </Form.Group>
+          <Form.Group controlId="formId">
+            <Form.Control
+              type="text"
+              defaultValue={this.props.questionUpdate._id}
+            />
+          </Form.Group>
+
           <Form.Group controlId="formDetails">
-            <Form.Control type="text" placeholder="Answer Details" />
+            <Form.Control
+              type="text"
+              placeholder="Answer Details"
+              defaultValue={this.props.questionUpdate.details}
+            />
           </Form.Group>
 
           <Button variant="primary" type="submit">
-            Add Question
+            Submit
           </Button>
         </Form>
       </div>

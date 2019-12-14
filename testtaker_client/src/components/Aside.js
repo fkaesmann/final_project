@@ -22,11 +22,16 @@ class Aside extends Component {
 
   async handleAdd(num) {
     try {
-      //   // event.preventDefault();
-      // console.log("handleAdd num =>", num);
       this.props.handleAdd();
     } catch (err) {
       console.log("handleAdd: ", err);
+    }
+  }
+  async handleChange(num) {
+    try {
+      this.props.handleChange();
+    } catch (err) {
+      console.log("handleChange: ", err);
     }
   }
 
@@ -52,7 +57,12 @@ class Aside extends Component {
           >
             Add Test Question
           </Button>
-          <Button variant="secondary" size="md" block>
+          <Button
+            variant="secondary"
+            size="md"
+            block
+            onClick={() => this.handleChange(0)}
+          >
             Change Test Question
           </Button>
           <Button variant="secondary" size="md" block>
