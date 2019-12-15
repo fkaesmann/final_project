@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-// import Form from './Form.js'
 
 //git subtree push --prefix=testtakerk_api heroku master
 
-// function Aside(props) {
 class Add extends Component {
   constructor(props) {
     super(props);
@@ -15,21 +13,13 @@ class Add extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({ [event.target.id]: event.target.value });
-  }
+  // handleChange(event) {
+  //   this.setState({ [event.target.id]: event.target.value });
+  // }
 
   handleSubmit(event) {
     event.preventDefault();
 
-    // console.log("question => ", event.target.formQuestion.value);
-    // console.log("Answer 1 => ", event.target.formAnswer1.value);
-    // console.log("Answer 2 => ", event.target.formAnswer2.value);
-    // console.log("Answer 3 => ", event.target.formAnswer3.value);
-    // console.log("Answer 4 => ", event.target.formAnswer4.value);
-    // console.log("Correct => ", event.target.formCorrectNumber.value);
-    // console.log("Details => ", event.target.formDetails.value);
-    // if (this.props.notice) {
     this.props.handleSubmit(event, {
       question: event.target.formQuestion.value,
       answer1: event.target.formAnswer1.value,
@@ -40,26 +30,8 @@ class Add extends Component {
       details: event.target.formDetails.value,
       id: event.target.formId.value
     });
-    //   this.props.toggleForm();
-    // } else {
-    //   this.props.handleSubmit(event, {
-    //     title: this.state.title,
-    //     author: this.state.author,
-    //     phone: this.state.phone
-    //   });
-    // }
-
-    // // clear out form
-    // this.setState({
-    //   formInputs: {
-    //     author: "",
-    //     title: "",
-    //     phone: ""
-    //   }
-    // });
   }
 
-  // const { x } = props;
   render() {
     return (
       <div>
@@ -114,9 +86,10 @@ class Add extends Component {
               defaultValue={this.props.questionUpdate.correctAnswer}
             />
           </Form.Group>
+
           <Form.Group controlId="formId">
             <Form.Control
-              type="text"
+              type="hidden"
               defaultValue={this.props.questionUpdate._id}
             />
           </Form.Group>
@@ -130,7 +103,7 @@ class Add extends Component {
           </Form.Group>
 
           <Button variant="primary" type="submit">
-            Submit
+            {this.props.buttonText} Question
           </Button>
         </Form>
       </div>
@@ -139,15 +112,3 @@ class Add extends Component {
 }
 
 export default Add;
-
-/*
-  <Form.Group controlId="formBasicPassword">
-    <Form.Label>Password</Form.Label>
-    <Form.Control type="password" placeholder="Password" />
-  </Form.Group>
-  <Form.Group controlId="formBasicCheckbox">
-    <Form.Check type="checkbox" label="Check me out" />
-  </Form.Group>
-  <Button variant="primary" type="submit">
-    Submit
-  </Button> */

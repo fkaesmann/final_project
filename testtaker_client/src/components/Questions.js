@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 
-// import axios from "axios";
 import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
-// import { Text } from "react-native";
 
 class Questions extends Component {
   constructor(props) {
@@ -19,7 +17,6 @@ class Questions extends Component {
       clickedAnswer: false,
       nextButtonState: false
     };
-    // this.getQuestions = this.getQuestions.bind(this);
     this.alertClicked = this.alertClicked.bind(this);
   }
 
@@ -37,20 +34,7 @@ class Questions extends Component {
   async handleNext(question_ID) {
     //Check if it is the last question
     this.props.handleNext(question_ID);
-    // if (this.state.questionNumber === this.state.questions.length - 1) {
-    //   this.state.questionNumber = 0;
-    //   this.setState({
-    //     answerText: "Test Complete!",
-    //     answerColor: "info",
-    //     nextButtonState: true
-    //   });
-    //   return;
-    // } else {
-    //   this.state.questionNumber++;
-    // }
-    // this.state.questionCurrent = this.state.questions[
-    //   this.state.questionNumber
-    // ];
+
     this.setState({
       clickedAnswer: false,
       questionCurrent: this.state.questions[this.state.questionNumber],

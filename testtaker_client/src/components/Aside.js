@@ -9,6 +9,8 @@ class Aside extends Component {
       start: true
     };
     this.handleReset1 = this.handleReset1.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   async handleReset1(num) {
@@ -32,6 +34,13 @@ class Aside extends Component {
       this.props.handleChange();
     } catch (err) {
       console.log("handleChange: ", err);
+    }
+  }
+  async handleDelete(num) {
+    try {
+      this.props.handleDelete();
+    } catch (err) {
+      console.log("handleDelete: ", err);
     }
   }
 
@@ -65,7 +74,13 @@ class Aside extends Component {
           >
             Change Test Question
           </Button>
-          <Button variant="secondary" size="md" block>
+
+          <Button
+            variant="secondary"
+            size="md"
+            block
+            onClick={() => this.handleDelete(0)}
+          >
             Delete Test Question
           </Button>
         </div>

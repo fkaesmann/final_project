@@ -4,9 +4,6 @@ import Nav from "./Nav.js";
 import Questions from "./Questions";
 import Add from "./Add";
 import axios from "axios";
-// import Button from "react-bootstrap/Button";
-// import ListGroup from "react-bootstrap/ListGroup";
-// import { Text } from "react-native";
 
 class Main extends Component {
   constructor(props) {
@@ -19,7 +16,7 @@ class Main extends Component {
       questionUpdate: {},
       answerText: "",
       addButton: false,
-      addToDB: false,
+      databaseAction: "",
       answerColor: "",
       clickedAnswer: false,
       nextButtonState: false
@@ -30,14 +27,12 @@ class Main extends Component {
     this.handleAdd = this.handleAdd.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   async componentDidMount() {
     await this.getQuestions();
-    // console.log(
-    //   "Questions componentDidMount count",
-    //   this.state.questions.length
-    // );
+
     this.setState({
       questionCurrent: this.state.questions[0],
       questionNumber: 0,
@@ -50,14 +45,12 @@ class Main extends Component {
     const data = response.data;
     this.setState({
       questions: data,
+      buttonAction: "",
       questionNumber: 0
     });
-    // console.log("Questions getQuestions", this.state.questions);
   }
 
   async handleNext() {
-    //Check if it is the last question
-    // console.log("main.js handleNext", this.state.questionNumber);
     if (this.state.questionNumber === this.state.questions.length - 1) {
       this.state.questionNumber = 0;
       this.setState({
@@ -83,13 +76,18 @@ class Main extends Component {
   }
 
   async handleSubmit(event, formInputs) {
-    console.log("main.js handleSubmit this.state.addToDB ", this.state.addToDB);
-    console.log("main.js handleSubmit formInputs ", formInputs);
-
-    if (this.state.addToDB) {
-      await axios.post("/testtaker", formInputs);
-    } else {
-      await axios.put(`/testtaker/${formInputs.id}`, formInputs);
+    switch (this.state.databaseAction) {
+      case "Add":
+        await axios.post("/testtaker", formInputs);
+        break;
+      case "Change":
+        await axios.put(`/testtaker/${formInputs.id}`, formInputs);
+        break;
+      case "Delete":
+        await axios.delete(`/testtaker/${formInputs.id}`);
+        break;
+      default:
+      // code block
     }
 
     await this.getQuestions();
@@ -101,19 +99,9 @@ class Main extends Component {
     });
   }
 
-  // async handleDelete(deletedNotice) {
-  //   await axios.delete(`/notices/${deletedNotice.id}`);
-  //   this.getNotices();
-  // }
-  // async handleUpdate(event, formInputs) {
-  //   event.preventDefault();
-  //   await axios.put(`/notices/${formInputs.id}`, formInputs);
-  //   this.getNotices();
-  // }
-
   async handlReset() {
     await this.getQuestions();
-    console.log("Main handleReset", this.state.questions[0]);
+
     this.setState({
       questionNumber: 0,
       addButton: false,
@@ -121,22 +109,25 @@ class Main extends Component {
     });
   }
   async handleAdd() {
-    console.log("Main handleAdd");
-
     this.setState({
       addButton: true,
-      addToDB: true
+
+      databaseAction: "Add",
+      questionUpdate: {}
     });
   }
-  async handleChange() {
-    console.log(
-      "Main handleChange this.state.questionCurrent",
-      this.state.questionCurrent
-    );
 
+  async handleChange() {
     this.setState({
       addButton: true,
-      addToDB: false,
+      databaseAction: "Change",
+      questionUpdate: this.state.questionCurrent
+    });
+  }
+  async handleDelete() {
+    this.setState({
+      addButton: true,
+      databaseAction: "Delete",
       questionUpdate: this.state.questionCurrent
     });
   }
@@ -146,6 +137,7 @@ class Main extends Component {
       <Add
         handleSubmit={this.handleSubmit}
         questionUpdate={this.state.questionUpdate}
+        buttonText={this.state.databaseAction}
       />
     ) : (
       <Questions
@@ -162,6 +154,7 @@ class Main extends Component {
             handlReset={this.handlReset}
             handleAdd={this.handleAdd}
             handleChange={this.handleChange}
+            handleDelete={this.handleDelete}
           />
         </div>
 
