@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 // import Button from "react-bootstrap/Button";
-import axios from "axios";
+// import axios from "axios";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -20,12 +20,7 @@ class App extends Component {
 
   async componentDidMount() {}
 
-  async handleSubmit(event, obj) {
-    console.log("App.js handleSubmit ", obj);
-
-    await axios.post("/testtaker", obj);
-  }
-  // async handlReset() {}
+  async handleSubmit(event, obj) {}
 
   render() {
     return (

@@ -12,6 +12,7 @@ class Main extends Component {
       questions: [],
       questionNumber: 0,
       score: 0,
+      percentScore: 0,
       questionCurrent: {},
       questionUpdate: {},
       answerText: "",
@@ -28,6 +29,7 @@ class Main extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.updateScore = this.updateScore.bind(this);
   }
 
   async componentDidMount() {
@@ -35,7 +37,6 @@ class Main extends Component {
 
     this.setState({
       questionCurrent: this.state.questions[0],
-      questionNumber: 0,
       addButton: false
     });
   }
@@ -51,27 +52,23 @@ class Main extends Component {
   }
 
   async handleNext() {
-    if (this.state.questionNumber === this.state.questions.length - 1) {
-      this.state.questionNumber = 0;
-      this.setState({
-        answerText: "Test Complete!",
-        answerColor: "info",
-        nextButtonState: true
-      });
-      return;
-    } else {
-      this.state.questionNumber++;
-    }
+    this.state.questionNumber++;
 
     this.state.questionCurrent = this.state.questions[
       this.state.questionNumber
     ];
+
+    if (this.state.questionNumber + 1 >= this.state.questions.length) {
+      this.setState({
+        nextButtonState: true
+      });
+    }
     this.setState({
       clickedAnswer: false,
       questionCurrent: this.state.questions[this.state.questionNumber],
       answerText: "",
-      answerColor: "",
-      nextButtonState: ""
+      answerColor: ""
+      // nextButtonState: false
     });
   }
 
@@ -91,7 +88,6 @@ class Main extends Component {
     }
 
     await this.getQuestions();
-
     this.setState({
       questionCurrent: this.state.questions[0],
       questionNumber: 0,
@@ -101,13 +97,16 @@ class Main extends Component {
 
   async handlReset() {
     await this.getQuestions();
-
     this.setState({
       questionNumber: 0,
+      score: 0,
       addButton: false,
-      questionCurrent: this.state.questions[0]
+      nextButtonState: false,
+      questionCurrent: this.state.questions[0],
+      answerText: "clear"
     });
   }
+
   async handleAdd() {
     this.setState({
       addButton: true,
@@ -124,11 +123,19 @@ class Main extends Component {
       questionUpdate: this.state.questionCurrent
     });
   }
+
   async handleDelete() {
     this.setState({
       addButton: true,
       databaseAction: "Delete",
       questionUpdate: this.state.questionCurrent
+    });
+  }
+
+  //Increment or decrement score from Questions.js
+  updateScore(value) {
+    this.setState({
+      score: this.state.score + value
     });
   }
 
@@ -142,9 +149,12 @@ class Main extends Component {
     ) : (
       <Questions
         questionCurrent={this.state.questionCurrent}
-        score={this.state.score}
+        // score={this.state.score}
+        nextButtonState={this.state.nextButtonState}
+        answerText={this.state.answerText}
         alertClicked={this.alertClicked}
         handleNext={this.handleNext}
+        updateScore={this.updateScore}
       />
     );
     return (
@@ -162,6 +172,7 @@ class Main extends Component {
 
         <Nav
           score={this.state.score}
+          percentScore={this.state.percentScore}
           numOfQuestions={this.state.questions.length}
           questionNumber={this.state.questionNumber}
         />

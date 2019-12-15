@@ -9,38 +9,33 @@ class Questions extends Component {
     this.state = {
       questions: [],
       questionNumber: 0,
-      score: 0,
-      tempScore: 0,
       questionCurrent: {},
       answerText: "",
       answerColor: "",
-      clickedAnswer: false,
-      nextButtonState: false
+      clickedAnswer: false
+      // nextButtonState: false
     };
     this.alertClicked = this.alertClicked.bind(this);
   }
 
-  async componentDidMount() {
-    // await this.getQuestions();
-    // console.log(
-    //   "Questions componentDidMount count",
-    //   this.state.questions.length
-    // );
-    // this.setState({
-    //   questionCurrent: this.state.questions[0]
-    // });
-  }
+  // async componentDidMount() {
+  //   this.setState({
+  //     clickedAnswer: false,
+  //     answerText: ""
+  //   });
+  // }
 
   async handleNext(question_ID) {
-    //Check if it is the last question
+    //handleNext in parent
     this.props.handleNext(question_ID);
 
+    //clear out form
     this.setState({
       clickedAnswer: false,
       questionCurrent: this.state.questions[this.state.questionNumber],
       answerText: "",
-      answerColor: "",
-      nextButtonState: ""
+      answerColor: ""
+      // nextButtonState: false
     });
   }
 
@@ -49,18 +44,9 @@ class Questions extends Component {
 
     if (!this.state.clickedAnswer) {
       if (num === this.props.questionCurrent.correctAnswer) {
-        this.state.tempScore = this.props.score;
-        this.setState({
-          score: this.state.tempScore++
-        });
-        console.log("In questions.js score", this.state.score);
+        this.props.updateScore(1);
       } else {
-        if (this.state.score <= 0) {
-          this.state.score = 1;
-        }
-        this.setState({
-          score: this.state.score - 1
-        });
+        this.props.updateScore(0);
       }
     }
 
@@ -126,7 +112,7 @@ class Questions extends Component {
                 <Button
                   type="button"
                   className="btn btn-primary"
-                  size="sm"
+                  size="md"
                   disabled={this.props.nextButtonState}
                   onClick={() =>
                     this.handleNext(this.props.questionCurrent.question._id)
