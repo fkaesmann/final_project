@@ -18,6 +18,7 @@ const whitelist = [
   "*",
   "http://ftk-testtaker.herokuapp.com/",
   "https//ftk-testtaker.surge.sh/",
+  "http//ftk-testtaker.surge.sh/",
   "https//ftk-testtaker.surge.sh",
   "http://ftk-testtaker.surge.sh",
   "https://ftk-testtaker.surge.sh/testtaker",
@@ -36,6 +37,14 @@ const corsOptions = {
 const setHeaders = (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "https:ftk-testtaker.surge.sh/");
   res.header("Access-Control-Allow-Origin", "http://ftk-testtaker.surge.sh/");
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://ftk-testtaker.surge.sh/testtaker"
+  );
+  res.header(
+    "Access-Control-Allow-Origin",
+    "http://ftk-testtaker.surge.sh/testtaker"
+  );
   res.header("Content-Type", "application/json");
   res.headers("Access-Control-Allow-Origin", "*");
 };
