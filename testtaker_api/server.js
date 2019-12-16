@@ -46,7 +46,8 @@ const setHeaders = (req, res, next) => {
     "http://ftk-testtaker.surge.sh/testtaker"
   );
   res.header("Content-Type", "application/json");
-  res.headers("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
 };
 app.use(setHeaders);
 
