@@ -24,16 +24,16 @@ const whitelist = [
   "https://ftk-testtaker.surge.sh/testtaker",
   "http://ftk-testtaker.surge.sh/testtaker"
 ];
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  }
-};
-
+// const corsOptions = {
+//   origin: (origin, callback) => {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   }
+// };
+//http://ftk-testtaker.surge.sh/
 const setHeaders = (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "https:ftk-testtaker.surge.sh");
   res.header("Access-Control-Allow-Origin", "http://ftk-testtaker.surge.sh");
@@ -48,7 +48,7 @@ const setHeaders = (req, res, next) => {
   res.header("Content-Type", "application/json");
   res.headers("Access-Control-Allow-Origin", "*");
 };
-// app.use(setHeaders);
+app.use(setHeaders);
 
 app.use(express.json());
 // app.use(cors(corsOptions));
