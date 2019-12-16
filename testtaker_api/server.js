@@ -16,10 +16,10 @@ app.use(express.urlencoded({ extended: false }));
 const whitelist = [
   "http://localhost:3001",
   "*",
-  "https://booz-api.herokuapp.com",
-  "https://booz-app.surge.sh/",
-  "https://booz-app.surge.sh",
-  "http://booz-app.surge.sh"
+  "http://ftk-testtaker.herokuapp.com/",
+  "https//ftk-testtaker.surge.sh/",
+  "https//ftk-testtaker.surge.sh",
+  "http://ftk-testtaker.surge.sh"
 ];
 const corsOptions = {
   origin: (origin, callback) => {
