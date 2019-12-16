@@ -49,12 +49,10 @@ const setHeaders = (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-  res.header(
+  rres.header(
     "Access-Control-Allow-Headers",
     "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
   );
-  chain.doFilter(req, res);
-
   next();
 };
 app.use(setHeaders);
