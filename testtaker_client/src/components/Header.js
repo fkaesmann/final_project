@@ -4,7 +4,7 @@ function Header(props) {
   return (
     <header>
       <center>
-        <h1>Fred's Test Taking App</h1>
+        <h1>CISSP Test Preparation</h1>
       </center>
     </header>
   );

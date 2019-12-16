@@ -12,6 +12,7 @@ class Main extends Component {
       questions: [],
       questionNumber: 0,
       score: 0,
+      tScore: 0,
       percentScore: 0,
       questionCurrent: {},
       questionUpdate: {},
@@ -68,7 +69,6 @@ class Main extends Component {
       questionCurrent: this.state.questions[this.state.questionNumber],
       answerText: "",
       answerColor: ""
-      // nextButtonState: false
     });
   }
 
@@ -137,6 +137,15 @@ class Main extends Component {
     this.setState({
       score: this.state.score + value
     });
+
+    if (value) {
+      this.state.tScore++;
+      let T = (this.state.tScore / this.state.questions.length) * 100;
+
+      this.setState({
+        percentScore: T
+      });
+    }
   }
 
   render() {

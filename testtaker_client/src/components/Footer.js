@@ -8,13 +8,13 @@ class Footer extends React.Component {
     };
   }
 
-  componentDidMount() {}
+  // componentDidMount() {}
 
   render() {
     return (
       <footer>
         <center>
-          <h2>Footer</h2>
+          <h4></h4>
         </center>
       </footer>
     );
