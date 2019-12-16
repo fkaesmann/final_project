@@ -50,6 +50,9 @@ const setHeaders = (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
 
+  res.header("Access-Control-Allow-Headers", "Content-Type, Accept");
+  // has been blocked by CORS policy: Request header field content-type is not allowed by Access-Control-Allow-Headers in preflight response.
+
   next();
 };
 app.use(setHeaders);
