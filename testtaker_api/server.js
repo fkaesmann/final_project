@@ -47,6 +47,8 @@ const setHeaders = (req, res, next) => {
   );
   res.header("Content-Type", "application/json");
   res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 };
 app.use(setHeaders);
