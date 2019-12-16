@@ -83,9 +83,15 @@ The Security Exam Test Taker post-MVP will be comprised of two document models, 
 
 ## Heroku
 
-- heroku create ftk-testtaker-api2
-  -- Creating ⬢ ftk-testtaker-api2... done
-  -- https://ftk-testtaker-api2.herokuapp.com/ | https://git.heroku.com/ftk-testtaker-api2.git
+- heroku create ftk-testtaker
+  -- Creating ⬢ ftk-testtaker... done
+  -- https://ftk-testtaker.herokuapp.com/ | https://git.heroku.com/ftk-testtaker.git
+
+- git remote -v
+  -- heroku https://git.heroku.com/ftk-testtaker.git (fetch)
+  -- heroku https://git.heroku.com/ftk-testtaker.git (push)
+  -- origin https://github.com/fkaesmann/final_project.git (fetch)
+  -- origin https://github.com/fkaesmann/final_project.git (push)
 
 ## Finial Thoughts
 
