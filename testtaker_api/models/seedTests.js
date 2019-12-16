@@ -52,17 +52,27 @@ const seedData = [
 // Seeding function
 const seedDB = () => {
   // Declare db name, URI, and instantiate connection
-  const dbName = "tests";
-  const dbURI = `mongodb://localhost:27017/${dbName}`;
+  // const dbName = "tests";
+  // const dbURI = `mongodb://localhost:27017/${dbName}`;
   const dbConnection = mongoose.connection;
 
+  //for Heroku Mongo DB
+  const MONGODB_URI =
+    process.env.MONGODB_URI || "mongodb://localhost:27017/tests";
+
   dbConnection.on("error", err => console.log("DB Connection Error: ", err));
-  dbConnection.on("connected", () => console.log("DB Connected to: ", dbURI));
+  dbConnection.on("connected", () =>
+    console.log("DB Connected to: ", MONGODB_URI)
+  );
   dbConnection.on("disconnected", () => console.log("DB Disconnected"));
 
-  mongoose.connect(dbURI, { useNewUrlParser: true }, () =>
-    console.log(`${dbName} db running on ${dbURI}`)
-  );
+  // Connect to Mongo
+  mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, () => {
+    console.log("connected to mongo database");
+  });
+  // mongoose.connect(dbURI, { useNewUrlParser: true }, () =>
+  //   console.log(`${dbName} db running on ${dbURI}`)
+  // );
 
   // Tests.collection.drop()
   Tests.create(seedData, (err, newTests) => {
