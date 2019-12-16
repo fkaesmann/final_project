@@ -48,7 +48,7 @@ const setHeaders = (req, res, next) => {
   res.header("Content-Type", "application/json");
   res.headers("Access-Control-Allow-Origin", "*");
 };
-// app.use(setHeaders);
+app.use(setHeaders);
 
 app.use(express.json());
 // app.use(cors(corsOptions));
