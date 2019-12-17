@@ -12,10 +12,12 @@ class Questions extends Component {
       questionCurrent: {},
       answerText: "",
       answerColor: "",
+      hovering: "",
       clickedAnswer: false
       // nextButtonState: false
     };
     this.alertClicked = this.alertClicked.bind(this);
+    this.onToggleColor = this.onToggleColor.bind(this);
   }
 
   // async componentDidMount() {
@@ -36,6 +38,48 @@ class Questions extends Component {
       answerText: "",
       answerColor: ""
     });
+  }
+
+  onToggleColor(event) {
+    if (this.state.hovering === "info") {
+      this.setState({ hovering: "" });
+    } else {
+      this.setState({ hovering: "info" });
+    }
+
+    switch (event) {
+      case 1:
+        if (this.state.hovering1 === "info") {
+          this.setState({ hovering1: "" });
+        } else {
+          this.setState({ hovering1: "info" });
+        }
+        break;
+      case 2:
+        if (this.state.hovering2 === "info") {
+          this.setState({ hovering2: "" });
+        } else {
+          this.setState({ hovering2: "info" });
+        }
+        break;
+      case 3:
+        if (this.state.hovering3 === "info") {
+          this.setState({ hovering3: "" });
+        } else {
+          this.setState({ hovering3: "info" });
+        }
+        break;
+      case 4:
+        if (this.state.hovering4 === "info") {
+          this.setState({ hovering4: "" });
+        } else {
+          this.setState({ hovering4: "info" });
+        }
+        break;
+
+      default:
+      // code block
+    }
   }
 
   alertClicked(num) {
@@ -79,27 +123,39 @@ class Questions extends Component {
                 <strong>Question: </strong>
                 {this.props.questionCurrent.question}
               </ListGroup.Item>
+
               <ListGroup.Item
-                variant="Secondary"
+                variant={this.state.hovering1}
                 onClick={() => this.alertClicked(1)}
+                onMouseOver={() => this.onToggleColor(1)}
+                onMouseOut={() => this.onToggleColor(1)}
               >
                 {this.props.questionCurrent.answer1}
               </ListGroup.Item>
+
               <ListGroup.Item
-                variant="Dark"
                 onClick={() => this.alertClicked(2)}
+                variant={this.state.hovering2}
+                onMouseOver={() => this.onToggleColor(2)}
+                onMouseOut={() => this.onToggleColor(2)}
               >
                 {this.props.questionCurrent.answer2}
               </ListGroup.Item>
+
               <ListGroup.Item
-                variant="Secondary"
+                variant={this.state.hovering3}
                 onClick={() => this.alertClicked(3)}
+                onMouseOver={() => this.onToggleColor(3)}
+                onMouseOut={() => this.onToggleColor(3)}
               >
                 {this.props.questionCurrent.answer3}
               </ListGroup.Item>
+
               <ListGroup.Item
-                variant="Dark"
+                variant={this.state.hovering4}
                 onClick={() => this.alertClicked(4)}
+                onMouseOver={() => this.onToggleColor(4)}
+                onMouseOut={() => this.onToggleColor(4)}
               >
                 {this.props.questionCurrent.answer4}
               </ListGroup.Item>
