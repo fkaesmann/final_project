@@ -3,6 +3,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 //git subtree push --prefix=testtakerk_api heroku master
+//git subtree add --prefix=ftk-testtaker heroku master
+//git subtree push --prefix=testtaker_api heroku master
 
 class Add extends Component {
   constructor(props) {
@@ -80,11 +82,18 @@ class Add extends Component {
           </Form.Group>
 
           <Form.Group controlId="formCorrectNumber">
-            <Form.Control
+            <Form.Control as="select">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </Form.Control>
+
+            {/* <Form.Control
               type="number"
               placeholder="Correct (1 - 4)"
               defaultValue={this.props.questionUpdate.correctAnswer}
-            />
+            /> */}
           </Form.Group>
 
           <Form.Group controlId="formId">

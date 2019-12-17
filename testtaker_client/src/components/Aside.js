@@ -48,8 +48,7 @@ class Aside extends Component {
   render() {
     return (
       <div>
-        Aside
-        <div>
+        <div id="aside" className="   rounded-top">
           <Button
             variant="primary"
             size="md"

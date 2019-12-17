@@ -35,7 +35,6 @@ class Questions extends Component {
       questionCurrent: this.state.questions[this.state.questionNumber],
       answerText: "",
       answerColor: ""
-      // nextButtonState: false
     });
   }
 
@@ -70,6 +69,7 @@ class Questions extends Component {
       <>
         <div>
           <div>
+            <h2>{this.props.loading}</h2>
             <h5 align="left">
               Instructions: Click on the best answer for the question
             </h5>

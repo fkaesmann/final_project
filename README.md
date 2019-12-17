@@ -88,10 +88,30 @@ The Security Exam Test Taker post-MVP will be comprised of two document models, 
   -- https://ftk-testtaker.herokuapp.com/ | https://git.heroku.com/ftk-testtaker.git
 
 - git remote -v
+
+```
   -- heroku https://git.heroku.com/ftk-testtaker.git (fetch)
   -- heroku https://git.heroku.com/ftk-testtaker.git (push)
   -- origin https://github.com/fkaesmann/final_project.git (fetch)
   -- origin https://github.com/fkaesmann/final_project.git (push)
+```
+
+- Go into Heroku app in browser to configure Mongo DB
+
+```
+  -- Select your app (ftk-testtaker)
+  -- Select "Resources" tab
+  -- Search for and install "mLab MongoDB" sandbox (free version)
+```
+
+```
+- Push to Heroku and git with:
+  -- git add . (this should be your API folder)
+  -- git commit -m "x"
+  -- git push heroku master
+  --- or: git subtree push --prefix=testtaker_api heroku master
+  -- heroku restart
+```
 
 ## Finial Thoughts
 

@@ -33,6 +33,18 @@ footer {
   grid-area: footer;
   background-color: #abb8c3;
 }
+
+#aside {
+  /* paddingTop: 50px; */
+  padding: 40px 0px 0px 0px;
+  /* background-color: #3790d8; */
+}
+#nav {
+  /* paddingTop: 50px; */
+  padding: 40px 0px 0px 0px;
+  /* background-color: #3790d8; */
+}
+
 add {
   grid-area: add;
   background-color: var(--oasis-blue);

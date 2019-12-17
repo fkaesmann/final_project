@@ -20,6 +20,7 @@ class Main extends Component {
       addButton: false,
       databaseAction: "",
       answerColor: "",
+      loading: "Initilizing",
       clickedAnswer: false,
       nextButtonState: false
     };
@@ -38,16 +39,21 @@ class Main extends Component {
 
     this.setState({
       questionCurrent: this.state.questions[0],
+      // loading: "Initilizing",
       addButton: false
     });
   }
 
   async getQuestions() {
-    const response = await axios("/testtaker");
+    // const response = await axios("/testtaker");
+    const response = await axios(
+      "http://ftk-testtaker.herokuapp.com/testtaker"
+    );
     const data = response.data;
     this.setState({
       questions: data,
       buttonAction: "",
+      loading: "",
       questionNumber: 0
     });
   }
@@ -75,13 +81,22 @@ class Main extends Component {
   async handleSubmit(event, formInputs) {
     switch (this.state.databaseAction) {
       case "Add":
-        await axios.post("/testtaker", formInputs);
+        // await axios.post("/testtaker", formInputs);
+        await axios.post(
+          "http://ftk-testtaker.herokuapp.com/testtaker",
+          formInputs
+        );
         break;
       case "Change":
-        await axios.put(`/testtaker/${formInputs.id}`, formInputs);
+        await axios.put(
+          `http://ftk-testtaker.herokuapp.com/testtaker/${formInputs.id}`,
+          formInputs
+        );
         break;
       case "Delete":
-        await axios.delete(`/testtaker/${formInputs.id}`);
+        await axios.delete(
+          `http://ftk-testtaker.herokuapp.com/testtaker/${formInputs.id}`
+        );
         break;
       default:
       // code block
@@ -91,7 +106,10 @@ class Main extends Component {
     this.setState({
       questionCurrent: this.state.questions[0],
       questionNumber: 0,
-      addButton: false
+      addButton: false,
+      nextButtonState: false,
+      percentScore: 0,
+      score: 0
     });
   }
 
@@ -141,7 +159,7 @@ class Main extends Component {
     if (value) {
       this.state.tScore++;
       let T = (this.state.tScore / this.state.questions.length) * 100;
-
+      T = T.toFixed(1);
       this.setState({
         percentScore: T
       });
@@ -158,7 +176,7 @@ class Main extends Component {
     ) : (
       <Questions
         questionCurrent={this.state.questionCurrent}
-        // score={this.state.score}
+        loading={this.state.loading}
         nextButtonState={this.state.nextButtonState}
         answerText={this.state.answerText}
         alertClicked={this.alertClicked}
