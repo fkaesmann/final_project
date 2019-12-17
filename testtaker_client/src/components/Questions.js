@@ -113,7 +113,7 @@ class Questions extends Component {
       <>
         <div>
           <div>
-            <h2>{this.props.loading}</h2>
+            <h2 style={{ color: "red" }}>{this.props.loading}</h2>
             <h5 align="left">
               Instructions: Click on the best answer for the question
             </h5>
@@ -125,8 +125,8 @@ class Questions extends Component {
               </ListGroup.Item>
 
               <ListGroup.Item
-                variant={this.state.hovering1}
                 onClick={() => this.alertClicked(1)}
+                variant={this.state.hovering1}
                 onMouseOver={() => this.onToggleColor(1)}
                 onMouseOut={() => this.onToggleColor(1)}
               >
