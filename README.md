@@ -113,6 +113,16 @@ The Security Exam Test Taker post-MVP will be comprised of two document models, 
   -- heroku restart
 ```
 
+## Surge
+
+- Go into the client / frontend folder
+- run "npm run build"
+- cd into the build directory with "cd build"
+- Enter "surge"
+- Press enter on next line
+- Enter the URL in the domain line "http://ftk-testtaker.surge.sh/"
+- Verify this site is working
+
 ## Finial Thoughts
 
 Prudential uses Full Stack models, mostly with NodeJS / Express, and either Mongo or PostgreSQL. I don't know if any applications - currently - are using Ruby or Rails, so I'm sticking with the MERN stack for now.

@@ -120,6 +120,7 @@ class Main extends Component {
       score: 0,
       addButton: false,
       nextButtonState: false,
+      percentScore: 0,
       questionCurrent: this.state.questions[0],
       answerText: "clear"
     });
